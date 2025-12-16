@@ -5,7 +5,7 @@ Turn any hosted GLB/GLTF (and optional USDZ) into an AR experience with a QR cod
 ## Quick start
 1. Convert your 3D file to `glb`/`gltf`. For STEP/IGES/STL, export to glTF with FreeCAD → Blender → glTF exporter. For iOS, convert the glTF to USDZ using Apple's free Reality Converter.
 2. Drop the files into this repo, e.g. `assets/model.glb` and `assets/model.usdz`.
-3. Open `main.js` and update `DEFAULT_MODEL` and `DEFAULT_USDZ` to the paths you just added. Alternatively, keep the defaults and pass query params at runtime: `?model=https://.../your.glb&usdz=https://.../your.usdz`.
+3. Open `main.js` and update `DEFAULT_MODEL` and `DEFAULT_USDZ` to the paths you just added. Alternatively, keep the defaults and pass query params at runtime: `?model=https://.../your.glb&usdz=https://.../your.usdz&auto=1` (auto launches AR on scan).
 4. Push to GitHub and enable GitHub Pages (Settings → Pages → Branch: `main` → folder: `/`).
 5. Use the live URL GitHub provides; the page shows a QR image you can print or share.
 
