@@ -22,12 +22,20 @@
         <p class="eyebrow">Scan · Place · Preview</p>
         <h1>Share 3D and AR models with a QR code.</h1>
         <p class="lede">
-          Host your model on GitHub Pages, turn the link into a QR code, and let anyone scan to open an AR view that uses
-          their phone&rsquo;s camera. Works with Android Scene Viewer, iOS Quick Look, and WebXR where supported.
+          Host your model on GitHub Pages, set the GLB/USDZ links below, and turn them into a QR code. Scanning the QR
+          opens this page with AR enabled (Android Scene Viewer, iOS Quick Look, or WebXR where supported).
         </p>
         <div class="cta-row">
           <a class="btn primary" id="copyLink">Copy share link</a>
           <a class="btn ghost" id="openLink" target="_blank" rel="noreferrer">Open demo</a>
+        </div>
+        <div class="form card">
+          <label>GLB / GLTF URL (required)</label>
+          <input id="glbInput" type="url" placeholder="https://your-domain/path/model.glb">
+          <label>USDZ URL (for iOS Quick Look, optional)</label>
+          <input id="usdzInput" type="url" placeholder="https://your-domain/path/model.usdz">
+          <button class="btn primary full" id="apply">Update viewer + QR</button>
+          <p class="hint small">Tip: put your converted files in <code>assets/</code> of this repo and use their raw GitHub Pages URLs.</p>
         </div>
       </div>
       <div class="hero__viewer card">
@@ -53,7 +61,7 @@
         <ol class="steps">
           <li>Convert your 3D file to <code>.glb</code>/<code>.gltf</code> (and <code>.usdz</code> for iOS). STEP/IGES/STL need conversion; FreeCAD → glTF and Apple’s Reality Converter → USDZ are common paths.</li>
           <li>Drop the files into this repo (e.g., <code>assets/model.glb</code> and <code>assets/model.usdz</code>).</li>
-          <li>Update <code>main.js</code> defaults or pass query params <code>?model=&lt;url&gt;&amp;usdz=&lt;url&gt;</code>.</li>
+          <li>Use the inputs above or query params <code>?model=&lt;url&gt;&amp;usdz=&lt;url&gt;</code> to point at your hosted files.</li>
           <li>Push to GitHub and enable GitHub Pages. Copy the live URL below and make a QR code.</li>
           <li>Scan the QR code with your phone; tap the AR button to place the object in your space.</li>
         </ol>
