@@ -68,12 +68,25 @@
         </ol>
       </div>
       <div class="card">
-        <h2>QR for this page</h2>
-        <div class="qr">
-          <img id="qrImage" alt="QR code for this page">
+        <h2>QR codes</h2>
+        <div class="qr-row">
+          <div class="qr-block">
+            <p class="label">Page (with viewer)</p>
+            <div class="qr"><img id="qrPage" alt="QR for page"></div>
+            <p class="mono small" id="pageUrl"></p>
+          </div>
+          <div class="qr-block">
+            <p class="label">iOS Quick Look (direct AR)</p>
+            <div class="qr"><img id="qrIOS" alt="QR for iOS AR"></div>
+            <p class="mono small" id="iosUrl"></p>
+          </div>
+          <div class="qr-block">
+            <p class="label">Android Scene Viewer (direct AR)</p>
+            <div class="qr"><img id="qrAndroid" alt="QR for Android AR"></div>
+            <p class="mono small" id="androidUrl"></p>
+          </div>
         </div>
-        <p class="mono small" id="pageUrl"></p>
-        <p class="hint">Print this QR or share it. It always points to the current URL (including model parameters).</p>
+        <p class="hint">Scan iOS/Android QR to jump straight into AR. The page QR keeps the viewer + form.</p>
       </div>
     </section>
 

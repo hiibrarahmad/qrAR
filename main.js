@@ -6,9 +6,13 @@ const params = new URLSearchParams(window.location.search);
 const modelInput = document.getElementById('glbInput');
 const usdzInput = document.getElementById('usdzInput');
 const viewer = document.getElementById('viewer');
-const qrImage = document.getElementById('qrImage');
 const pageUrlLabel = document.getElementById('pageUrl');
 const launchBtn = document.getElementById('launchAR');
+const qrPage = document.getElementById('qrPage');
+const qrIOS = document.getElementById('qrIOS');
+const qrAndroid = document.getElementById('qrAndroid');
+const iosUrlLabel = document.getElementById('iosUrl');
+const androidUrlLabel = document.getElementById('androidUrl');
 
 const currentModel = params.get('model') || DEFAULT_MODEL;
 const currentUsdz = params.get('usdz') || DEFAULT_USDZ;
@@ -58,7 +62,16 @@ function updateShare(modelUrl, usdzUrl) {
   const base = window.location.origin + window.location.pathname;
   const url = `${base}?model=${encodeURIComponent(modelUrl)}&usdz=${encodeURIComponent(usdzUrl)}&auto=1`;
   pageUrlLabel.textContent = url;
-  qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(url)}`;
+  qrPage.src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(url)}`;
+
+  // Direct AR links
+  const iosLink = usdzUrl;
+  const androidLink = `https://arvr.google.com/scene-viewer/1.0?mode=ar_preferred&file=${encodeURIComponent(modelUrl)}&title=AR%20Model`;
+
+  iosUrlLabel.textContent = iosLink;
+  androidUrlLabel.textContent = androidLink;
+  qrIOS.src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(iosLink)}`;
+  qrAndroid.src = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(androidLink)}`;
 }
 
 function launchAR(urlWithParams) {
@@ -67,12 +80,7 @@ function launchAR(urlWithParams) {
   const usdzUrl = u.searchParams.get('usdz') || DEFAULT_USDZ;
 
   if (isIOS()) {
-    const a = document.createElement('a');
-    a.setAttribute('rel', 'ar');
-    a.setAttribute('href', usdzUrl);
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    window.location.href = usdzUrl;
   } else if (isAndroid()) {
     const scene = `https://arvr.google.com/scene-viewer/1.0?mode=ar_preferred&file=${encodeURIComponent(modelUrl)}&title=AR%20Model`;
     window.location.href = scene;
