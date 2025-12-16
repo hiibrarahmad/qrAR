@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR QR Model Viewer</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">AR QR</div>
+    <nav class="topnav">
+      <a href="#how">How it works</a>
+      <a href="#deploy">Deploy</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="hero">
+      <div class="hero__text">
+        <p class="eyebrow">Scan · Place · Preview</p>
+        <h1>Share 3D and AR models with a QR code.</h1>
+        <p class="lede">
+          Host your model on GitHub Pages, turn the link into a QR code, and let anyone scan to open an AR view that uses
+          their phone&rsquo;s camera. Works with Android Scene Viewer, iOS Quick Look, and WebXR where supported.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" id="copyLink">Copy share link</a>
+          <a class="btn ghost" id="openLink" target="_blank" rel="noreferrer">Open demo</a>
+        </div>
+      </div>
+      <div class="hero__viewer card">
+        <model-viewer id="viewer" ar ar-modes="webxr scene-viewer quick-look" camera-controls touch-action="pan-y"
+                      shadow-intensity="1" poster="https://modelviewer.dev/shared-assets/models/Astronaut.webp">
+        </model-viewer>
+        <div class="meta">
+          <div>
+            <p class="label">GLB/GLTF</p>
+            <p id="srcLabel" class="mono"></p>
+          </div>
+          <div>
+            <p class="label">iOS USDZ</p>
+            <p id="usdzLabel" class="mono"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2 id="how">How it works</h2>
+        <ol class="steps">
+          <li>Convert your 3D file to <code>.glb</code>/<code>.gltf</code> (and <code>.usdz</code> for iOS). STEP/IGES/STL need conversion; FreeCAD → glTF and Apple’s Reality Converter → USDZ are common paths.</li>
+          <li>Drop the files into this repo (e.g., <code>assets/model.glb</code> and <code>assets/model.usdz</code>).</li>
+          <li>Update <code>main.js</code> defaults or pass query params <code>?model=&lt;url&gt;&amp;usdz=&lt;url&gt;</code>.</li>
+          <li>Push to GitHub and enable GitHub Pages. Copy the live URL below and make a QR code.</li>
+          <li>Scan the QR code with your phone; tap the AR button to place the object in your space.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h2>QR for this page</h2>
+        <div class="qr">
+          <img id="qrImage" alt="QR code for this page">
+        </div>
+        <p class="mono small" id="pageUrl"></p>
+        <p class="hint">Print this QR or share it. It always points to the current URL (including model parameters).</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="deploy">Deploy on GitHub Pages</h2>
+      <ul class="steps">
+        <li>Create a new repo and add these files plus your <code>.glb</code>/<code>.usdz</code>.</li>
+        <li>Commit and push. In Settings → Pages, set the branch (e.g., <code>main</code>) and root folder.</li>
+        <li>Your site will be at <code>https://&lt;user&gt;.github.io/&lt;repo&gt;/</code>. Use that URL for the QR code.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p class="mono small">Tip: add <code>?model=https://.../your.glb&usdz=https://.../your.usdz</code> to the URL for ad‑hoc testing.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

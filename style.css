@@ -1,0 +1,241 @@
+:root {
+  --bg: #0d1117;
+  --card: #151b24;
+  --accent: #4cc9f0;
+  --accent-2: #ffb703;
+  --text: #e6edf3;
+  --muted: #9fb3c8;
+  --border: #243043;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --sans: "DM Sans", "Inter", system-ui, -apple-system, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--sans);
+  background: radial-gradient(120% 120% at 10% 10%, #102e4a, #0d1117 45%), var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding-bottom: 64px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  background: rgba(13, 17, 23, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.topnav a {
+  margin-left: 18px;
+  color: var(--muted);
+}
+
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 20px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  align-items: center;
+}
+
+.hero__text h1 {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 3vw, 42px);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.lede {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+.cta-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  color: var(--text);
+  background: var(--card);
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+}
+
+.btn.primary {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  color: #0d1117;
+  font-weight: 700;
+  border: none;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero__viewer {
+  height: 440px;
+  display: flex;
+  flex-direction: column;
+}
+
+model-viewer {
+  flex: 1;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0b0f17;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+.mono {
+  font-family: var(--mono);
+  word-break: break-all;
+}
+
+.grid {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.steps {
+  margin: 10px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+}
+
+.qr {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  background: radial-gradient(circle at 30% 30%, #1b2330, #0f141d);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+#qrImage {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+}
+
+.small {
+  font-size: 13px;
+}
+
+.hint {
+  color: var(--muted);
+}
+
+.foot {
+  max-width: 1200px;
+  margin: 18px auto 0;
+  padding: 0 20px 28px;
+  color: var(--muted);
+}
+
+/* Toast feedback */
+.toast {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background: #1f2937;
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.toast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    position: static;
+  }
+  .hero__viewer {
+    height: 360px;
+  }
+}
